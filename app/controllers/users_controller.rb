@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :login_auth, only:[:edit,:update]
 
   def show # 追加
-  # @user = User.find(params[:id])
+    @user = User.find(params[:id]) #ここがあるか否かでエラーがでる
+    @microposts = @user.microposts.order(created_at: :desc)
   end
 
   def new
