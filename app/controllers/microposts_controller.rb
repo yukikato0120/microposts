@@ -1,5 +1,5 @@
 class MicropostsController < ApplicationController
-  before_action :logged_auth, only: [:create]
+  before_action :logged_in_user
 
   def create
     @micropost = current_user.microposts.build(micropost_params)
