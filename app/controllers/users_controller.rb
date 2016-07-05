@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :followings, :followers]
   before_action :login_auth, only:[:edit,:update]
 
   def show # 追加
@@ -33,6 +33,18 @@ class UsersController < ApplicationController
      else
       render 'edit'
      end
+  end
+
+  def followings
+    @title = "Followings"
+    @users = @user.following_users
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Folowers"
+    @users = @user.follower_users
+    render 'show_follow'
   end
 
   private
